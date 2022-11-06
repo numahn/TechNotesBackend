@@ -8,11 +8,9 @@ $postdata = file_get_contents("php://input");
 if(isset($postdata) && !empty($postdata)){
     $request = json_decode($postdata);
      
-     
-    $date_created = date('YYYY-MM-DD') ;
-    $note_title = $request->note_title;
-    $note_content = $request->note_content;
-    $sql = "INSERT INTO `Notes` (note_title, note_content) VALUES ('$note_title', '$note_content')";
+    $title = $request->title;
+    $content = $request->content;
+    $sql = "INSERT INTO `Notes` (title, content) VALUES ('$title', '$content')";
     if(mysqli_query($db,$sql)){
         http_response_code(201);
     }
